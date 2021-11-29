@@ -1,0 +1,73 @@
+public static String fakeReview(String fileName)
+    {
+        String bigText=textToString(fileName);
+        int xIndex;
+        int wordLength=0;
+        int i=0;
+        String tempWord="";
+        int val=0;
+        String currentChar=bigText.substring(i,i+1);
+        System.out.println("here1");
+
+        while(i<bigText.length()-1){
+            System.out.println("outer loop\n i = " + i);
+            System.out.println("current char = " + currentChar);
+            if(currentChar.equals("*"))
+            {
+
+                while(!(currentChar.equals(" "))&& i<bigText.length())
+                {
+                    System.out.println("\t\tinner loop\n i = " + i);
+                    System.out.println("\t\tcurrent char = " + currentChar);
+                    tempWord+=currentChar;
+                    i++;
+                    currentChar=bigText.substring(i,i+1);
+                }
+                
+                tempWord=removePunctuation( tempWord );
+                System.out.println(tempWord);
+                val=tempWord.length()+1;
+                System.out.println("word length: " + val);
+                tempWord="";
+                
+                // The part that writes ADJ
+                while(bigText.indexOf("*")>=0)
+                {
+                    System.out.println("inner inner loop");
+                    xIndex=bigText.indexOf("*");
+                    System.out.println("xIndex = " + xIndex);
+                    String firstpart =bigText.substring(0,xIndex);
+                    System.out.println(val);
+                    String lastpart = bigText.substring(xIndex+val);
+                    bigText=firstpart+"ADJ"+lastpart;
+                    
+                }
+                
+                
+            }
+            else
+            {
+                i++;
+                currentChar=bigText.substring(i,i+1);
+            }
+            
+            
+        }
+        ////This was for the last adj to work and you delete this part up there I have no clue where the u
+        ///while(bigText.indexOf("*")>=0)
+        ///{
+        //    System.out.println("here4");
+        //    xIndex=bigText.indexOf("*");
+        //    String firstpart =bigText.substring(0,xIndex);
+        //    System.out.println(val);
+        //    String lastpart = bigText.substring(xIndex+val+1);
+        //    bigText=firstpart+"ADJ"+lastpart;
+              
+            
+        //}
+              
+          
+          System.out.println("here5");
+          return bigText;
+    }
+    
